@@ -1,30 +1,30 @@
-# def func(x):
-#     def add(a):
-#         return x+a
-#     return add
-#
-# test = func(100)
-# print(test(200))
-# def nw(**args):
-#     return args
-# print(nw(a=2,b=22))
-#
-# add = lambda w, x: x + w
-# print(add(1,3))
-# print((lambda w, x: x + w)(2,4))
+def func(x):
+    def add(a):
+        return x+a
+    return add
 
-#
-# def app(l=[]):
-#     l.append(1)
-#     print(l)
-# app()
-# app()
-# def app2(l=None):
-#     l = [] if l is None else l
-#     l.append(2)
-#     print(l)
-# app2()
-# app2()
+test = func(100)
+print(test(200))
+def nw(**args):
+    return args
+print(nw(a=2,b=22))
+
+add = lambda w, x: x + w
+print(add(1,3))
+print((lambda w, x: x + w)(2,4))
+
+
+def app(l=[]):
+    l.append(1)
+    print(l)
+app()
+app()
+def app2(l=None):
+    l = [] if l is None else l
+    l.append(2)
+    print(l)
+app2()
+app2()
 
 def train (*args,**kwargs):
     for i,arg in enumerate(args):
