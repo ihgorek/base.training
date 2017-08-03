@@ -52,6 +52,27 @@ print(first)
 print(rest)
 print(last)
 
+#ГЕНЕРАТОРЫ
+class Backwards:
+    def __init__(self, data):
+        self.data = data
+        self.index = len(data)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index == 0:
+            raise StopIteration
+        self.index = self.index - 1
+        return self.data[self.index]
+
+
+backwards = Backwards('some')
+iter(backwards)  # < Backwards instance at 0x7fceac135c68 >
+for char in backwards:
+    print(char)  # e m o s
+
 
 
 
