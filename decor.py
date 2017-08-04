@@ -4,7 +4,7 @@ import sys
 
 
 trace_enabled = False
-def trace(func = None, *, handle = sys.stdout):
+def tracee(func = None, *, handle = sys.stdout):
     # со скобочками
     if func is None:
         return lambda func: trace(func, handle=handle)
@@ -16,7 +16,7 @@ def trace(func = None, *, handle = sys.stdout):
         return func(*args,**kwargs)
     return inner
 
-@trace
+@tracee
 def indetify(x):
     """
     I do nothing useful.
@@ -25,21 +25,23 @@ def indetify(x):
     """
     return x
 
-indetify(2)
+print(indetify(3))
 # запуск программы один раз
-def once(func):
+
+
+def trace(func = None, *, handle=sys.stdout):
+    if func is None:
+        return lambda func: trace(func, handle=handle)
+
     @functools.wraps(func)
     def inner(*args, **kwargs):
-        if not inner.called:
-            func(*args, **kwargs)
-            inner.called = True
-        inner.called = False
-        return inner
+        print(func.__name__, args, kwargs)
+        return func(*args, *kwargs)
+    return inner
 
 
-@once
-def iin():
-    print("initialisation complete")
+@trace
+def foo(x):
+    return x
 
-
-iin()
+print(foo(2))
